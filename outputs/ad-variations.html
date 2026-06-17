@@ -6,52 +6,91 @@
 <title>Attio · LinkedIn ad variations (generated from the messaging hierarchy)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   /* ===========================================================
      ATTIO · LINKEDIN AD VARIATIONS
-     The finale: messaging-hierarchy output -> runnable ads.
-     Styled to match Attio's real LinkedIn creative: light bg,
-     dot grid, big near-black headline with a grey lead phrase,
-     black logo square + "attio" wordmark, small grey CTA.
+     The finale: messaging-hierarchy output -> runnable ads,
+     rendered as real LinkedIn promoted posts in Attio's own
+     ad system (post chrome + dot-grid creative + blue CTA bar),
+     matched to the brand's actual ad examples.
      Illustrative concepts for the webinar demo.
      =========================================================== */
   :root{
-    --ink:#17191E;--grey:#A6ABB2;--paper:#FCFBF9;--line:#ECEAE4;
-    --muted:#9AA0A8;--orange:#FF4A00;--font:'Inter',-apple-system,sans-serif;
+    --ink:#1B1D22;--grey:#9CA1A9;--paper:#FCFBF9;--line:#E7E9EC;
+    --li-text:#1f2328;--li-sub:#6b7280;--li-cta-bg:#EAF0F7;--li-blue:#2C6BE0;
+    --orange:#FF4A00;--font:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#EEEDE8;font-family:var(--font);color:var(--ink);padding:48px 24px 80px;}
-  .head{max-width:1120px;margin:0 auto 40px;}
+  body{background:#E9E8E3;font-family:var(--font);color:var(--ink);padding:48px 24px 80px;}
+  .head{max-width:1180px;margin:0 auto 40px;}
   .head .ey{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
-  .head h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;max-width:760px;}
-  .head p{font-size:15px;color:#4a4f57;line-height:1.55;max-width:700px;}
+  .head h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;max-width:780px;}
+  .head p{font-size:15px;color:#4a4f57;line-height:1.55;max-width:720px;}
   .head .chain{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#4a4f57;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;}
   .head .chain b{color:var(--ink);}
 
-  .grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+  .grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;align-items:start;}
+  @media(max-width:1020px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
   .unit{display:flex;flex-direction:column;gap:10px;}
 
-  /* the ad: square LinkedIn creative, Attio style */
-  .ad{aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:14px;position:relative;overflow:hidden;padding:32px;display:flex;flex-direction:column;box-shadow:0 6px 26px rgba(0,0,0,.07);}
-  .ad::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(23,25,30,.10) 1px, transparent 1.4px);background-size:18px 18px;mask-image:linear-gradient(180deg,transparent 0,black 30%,black 80%,transparent 100%);pointer-events:none;}
-  .ad > *{position:relative;z-index:1;}
-  .bracket{width:34px;height:34px;border-left:7px solid var(--ink);border-bottom:7px solid var(--ink);}
-  .ad h2{font-size:33px;font-weight:800;line-height:1.06;letter-spacing:-.022em;color:var(--ink);margin:auto 0;}
-  .ad h2 .g{color:var(--grey);}
-  .foot{display:flex;justify-content:space-between;align-items:flex-end;}
-  .cta{font-size:14px;font-weight:600;color:var(--muted);}
-  .brand{display:flex;align-items:center;gap:7px;}
-  .brand .sq{width:26px;height:26px;border-radius:7px;background:var(--ink);display:flex;align-items:center;justify-content:center;}
-  .brand .sq img{width:15px;height:auto;filter:brightness(0) invert(1);}
-  .brand .wm{font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.02em;}
+  /* === LINKEDIN PROMOTED POST CHROME === */
+  .li{background:#fff;border:1px solid #E2E4E8;border-radius:10px;overflow:hidden;box-shadow:0 6px 26px rgba(0,0,0,.08);}
+  .li-top{display:flex;align-items:center;gap:10px;padding:12px 14px;}
+  .li-logo{width:42px;height:42px;border-radius:9px;background:#111317;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
+  .li-logo img{width:24px;height:auto;filter:brightness(0) invert(1);}
+  .li-name{font-size:14px;font-weight:700;color:var(--li-text);line-height:1.2;}
+  .li-name span{display:block;font-size:12px;font-weight:400;color:var(--li-sub);}
+  .li-copy{padding:2px 14px 12px;font-size:13.5px;line-height:1.5;color:#3a3f47;}
+  .li-copy b{color:var(--li-text);font-weight:600;}
+  .li-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--li-cta-bg);padding:13px 14px;border-top:1px solid #E2E4E8;}
+  .li-cta .tag{font-size:13px;font-weight:700;color:var(--li-text);line-height:1.3;}
+  .li-cta .btn{flex:0 0 auto;font-size:13px;font-weight:600;color:var(--li-blue);background:#fff;border:1.5px solid var(--li-blue);border-radius:999px;padding:8px 18px;}
+
+  /* === THE CREATIVE (square) === */
+  .cr{aspect-ratio:1/1;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:30px;background:var(--paper);}
+  .cr.dots::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(27,29,34,.11) 1px, transparent 1.4px);background-size:19px 19px;pointer-events:none;}
+  .cr > *{position:relative;z-index:1;}
+  .wordmark{display:flex;align-items:center;justify-content:center;gap:7px;}
+  .wordmark img{height:21px;width:auto;}
+  .wordmark .w{font-size:21px;font-weight:800;letter-spacing:-.03em;color:var(--ink);}
+  .cr h2{font-size:30px;font-weight:800;line-height:1.07;letter-spacing:-.022em;color:var(--ink);}
+  .cr h2 .g{color:var(--grey);}
+  .cr .center{margin:auto 0;text-align:center;}
+  .cr .center h2{font-size:31px;}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;}
+  .foot .apply{font-size:14px;font-weight:600;color:var(--grey);}
+  .foot .mk{display:flex;align-items:center;gap:6px;}
+  .foot .mk img{height:18px;}
+  .foot .mk .w{font-size:15px;font-weight:800;letter-spacing:-.03em;color:var(--ink);}
+  .bracket{width:30px;height:30px;border-left:6px solid var(--ink);border-bottom:6px solid var(--ink);}
+
+  /* proof: customer logo row */
+  .logos{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;opacity:.55;}
+  .logos span{font-size:14px;font-weight:700;color:#3a3f47;letter-spacing:-.01em;}
+
+  /* dark variant */
+  .cr.dark{background:#121317;color:#fff;}
+  .cr.dark::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1.3px);background-size:16px 16px;}
+  .cr.dark .ascii{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;line-height:1.15;color:rgba(255,255,255,.13);white-space:pre;text-align:center;pointer-events:none;}
+  .cr.dark h2{color:#fff;}
+  .cr.dark .wordmark .w{color:#fff;}
+  .cr.dark .wordmark img{filter:brightness(0) invert(1);}
+
+  /* product-UI mock (agent-ready) */
+  .mock{display:flex;flex-direction:column;gap:9px;margin-top:16px;}
+  .bub{background:#fff;border:1px solid #E4E6EA;border-radius:11px;padding:11px 13px;font-size:12.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+  .bub .ico{width:18px;height:18px;border-radius:5px;background:#EAF0F7;display:flex;align-items:center;justify-content:center;font-size:11px;}
+  .bub.indent{margin-left:26px;}
+  .bub .ai{margin-left:auto;font-size:9.5px;font-weight:700;color:var(--li-blue);background:#EAF0F7;border-radius:5px;padding:3px 7px;}
+  .bub.soft{font-weight:500;color:#5a5f67;font-size:12px;}
+  .bub.soft b{color:var(--orange);}
 
   .meta{font-size:12.5px;color:#4a4f57;line-height:1.4;padding:0 4px;}
   .meta .ang{font-weight:700;color:var(--ink);}
   .meta .lad{color:var(--orange);font-weight:600;}
-  .note{max-width:1120px;margin:44px auto 0;font-size:12.5px;color:#6a6f78;border-top:1px solid var(--line);padding-top:18px;line-height:1.6;}
+  .note{max-width:1180px;margin:46px auto 0;font-size:12.5px;color:#6a6f78;border-top:1px solid var(--line);padding-top:18px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -59,7 +98,7 @@
   <div class="head">
     <div class="ey">The finale · what the skills produce</div>
     <h1>Attio, turned into runnable LinkedIn ads.</h1>
-    <p>Same messaging stack, six angles, each a LinkedIn single-image concept in Attio's own ad style. Change the copy, re-run, and the ad-studio skill spins fresh variations in seconds. This is the output the foundations make possible: not a doc, an ad.</p>
+    <p>Six promoted-post concepts in Attio's own ad system, generated from the messaging stack. Each headline ladders to a messaging layer, so the set reads as a structured message test, not a mood board. Change the copy, re-run ad-studio, get a fresh set in seconds.</p>
     <div class="chain">Context <b>&rarr;</b> ICP <b>&rarr;</b> positioning <b>&rarr;</b> messaging <b>&rarr;</b> <b>these ads</b></div>
   </div>
 
@@ -67,78 +106,97 @@
 
     <!-- 1 · POV wedge -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">Most CRMs bolted AI on.</span> Attio was built for it.</h2>
-        <div class="foot">
-          <div class="cta">See the difference &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">The AI-native CRM, built for AI from day one, not retrofitted onto legacy architecture.</div>
+        <div class="cr dots">
+          <div class="wordmark"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="center"><h2><span class="g">Most CRMs bolted AI on.</span><br>Attio was built for it.</h2></div>
+          <div class="foot"><span class="apply">See the difference</span><div class="mk"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div></div>
         </div>
+        <div class="li-cta"><span class="tag">The AI CRM built AI-native</span><span class="btn">Learn more</span></div>
       </div>
       <div class="meta"><span class="ang">Angle: the POV wedge.</span> <span class="lad">Ladders to: POV.</span></div>
     </div>
 
-    <!-- 2 · data model / builder -->
+    <!-- 2 · data model / control -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">Your data model,</span> your rules.</h2>
-        <div class="foot">
-          <div class="cta">Start free &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">Custom objects, your schema, your workflows. The CRM that bends to how you actually sell.</div>
+        <div class="cr dots">
+          <div class="bracket"></div>
+          <h2><span class="g">Your data model,</span><br>your rules.</h2>
+          <div class="foot"><span class="apply">Start free</span><div class="mk"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div></div>
         </div>
+        <div class="li-cta"><span class="tag">The most flexible CRM data model</span><span class="btn">Sign Up</span></div>
       </div>
       <div class="meta"><span class="ang">Angle: flexibility as control.</span> <span class="lad">Ladders to: Benefit 1.</span></div>
     </div>
 
-    <!-- 3 · social proof -->
+    <!-- 3 · social proof + logos -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">80,000+ startups</span> already switched.</h2>
-        <div class="foot">
-          <div class="cta">Join them &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">Join the world's leading startups and build your dream CRM on Attio.</div>
+        <div class="cr dots">
+          <div class="wordmark"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="center"><h2><span class="g">80,000+ startups</span><br>already switched.</h2></div>
+          <div class="logos"><span>granola</span><span>Coca-Cola</span><span>Flatfile</span><span>Modal</span></div>
         </div>
+        <div class="li-cta"><span class="tag">Join 80,000+ startups on Attio</span><span class="btn">Sign Up</span></div>
       </div>
       <div class="meta"><span class="ang">Angle: social proof.</span> <span class="lad">Ladders to: Proof point.</span></div>
     </div>
 
-    <!-- 4 · name the pain -->
+    <!-- 4 · name the pain (dark) -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">Still running a CRM</span> from 2009?</h2>
-        <div class="foot">
-          <div class="cta">Switch in an afternoon &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">Your go-to-market changed. Your CRM didn't. That gap is costing you pipeline.</div>
+        <div class="cr dark">
+          <div class="ascii">  .:-=+*#%@@%#*+=-:.
+ :=+*#%@@@@@@@@%#*+=:
+=*#%@@@ legacy @@@%#*=
+ :=+*#%@@@@@@@@%#*+=:
+  .:-=+*#%@@%#*+=-:.  </div>
+          <div class="wordmark"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="center"><h2><span class="g" style="color:#6b7078;">Still running a CRM</span><br>from 2009?</h2></div>
         </div>
+        <div class="li-cta"><span class="tag">Switch in an afternoon</span><span class="btn">Sign Up</span></div>
       </div>
-      <div class="meta"><span class="ang">Angle: name the pain.</span> <span class="lad">Ladders to: Problem.</span></div>
+      <div class="meta"><span class="ang">Angle: name the pain (dark variant for range).</span> <span class="lad">Ladders to: Problem.</span></div>
     </div>
 
     <!-- 5 · speed + scale -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">Live in an afternoon.</span> Scales to IPO.</h2>
-        <div class="foot">
-          <div class="cta">Try it free &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">Live in an afternoon, and it scales with you from seed to IPO.</div>
+        <div class="cr dots">
+          <div class="bracket"></div>
+          <h2><span class="g">Live in an afternoon.</span><br>Scales to IPO.</h2>
+          <div class="foot"><span class="apply">Try it free</span><div class="mk"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div></div>
         </div>
+        <div class="li-cta"><span class="tag">The AI CRM that scales seed to IPO</span><span class="btn">Sign Up</span></div>
       </div>
       <div class="meta"><span class="ang">Angle: speed and scale.</span> <span class="lad">Ladders to: Benefit 3.</span></div>
     </div>
 
-    <!-- 6 · agent-ready white space -->
+    <!-- 6 · agent-ready (product mock) -->
     <div class="unit">
-      <div class="ad">
-        <div class="bracket"></div>
-        <h2><span class="g">The CRM your</span> AI agents can actually use.</h2>
-        <div class="foot">
-          <div class="cta">See it work &rarr;</div>
-          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
+      <div class="li">
+        <div class="li-top"><div class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></div><div class="li-name">Attio<span>Promoted</span></div></div>
+        <div class="li-copy">Structured context your AI agents can act on: research, enrich, and run workflows for you.</div>
+        <div class="cr dots">
+          <h2 style="font-size:25px;text-align:center;">The CRM your <span class="g">AI agents</span> can actually use.</h2>
+          <div class="mock">
+            <div class="bub"><span class="ico">&#9679;</span> New lead found</div>
+            <div class="bub indent"><span class="ico">&#9679;</span> Evaluate size of opportunity <span class="ai">AI</span></div>
+            <div class="bub soft indent">&#10022; <b>$25M</b> raised in Series A funding round</div>
+          </div>
         </div>
+        <div class="li-cta"><span class="tag">The CRM your AI agents can use</span><span class="btn">Sign Up</span></div>
       </div>
       <div class="meta"><span class="ang">Angle: agent-ready (the white space).</span> <span class="lad">Ladders to: Benefit 2 + POV.</span></div>
     </div>
@@ -146,7 +204,7 @@
   </div>
 
   <div class="note">
-    Illustrative concepts generated from <code>outputs/messaging.md</code> for the webinar demo, styled to Attio's real LinkedIn creative. Every headline traces to a layer of the stack (POV, benefits, proof, problem), so the ads are on-message by construction. Swap the brand, logo, and stack, and the ad-studio skill produces a fresh set for any company.
+    Illustrative concepts generated from <code>outputs/messaging.md</code> for the webinar demo, rendered in Attio's real LinkedIn ad system (post chrome, dot-grid creative, customer-logo proof, dark texture, product-UI mock). Every headline traces to a layer of the stack, so the ads are on-message by construction. Swap the brand, logo, and stack, and ad-studio produces a fresh set for any company.
   </div>
 
 </body>

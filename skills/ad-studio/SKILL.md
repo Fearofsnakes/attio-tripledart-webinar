@@ -24,14 +24,15 @@ This skill consumes the output of `messaging-hierarchy`. If there is no hierarch
 
 ## ACT 1 — SOURCE THE INPUTS
 
-Confirm you have, or help the user assemble, four things:
+Confirm you have, or help the user assemble, these inputs:
 
 | # | Input | What it is |
 |---|---|---|
 | 1 | **Messaging hierarchy** | POV, value prop, benefits, proof points, features. The source of every headline. |
 | 2 | **Brand style** | Primary + accent color (hex), logo or wordmark, and the voice (one line of tone). |
-| 3 | **Format** | The ad spec. Default: LinkedIn single-image (square 1080x1080). Others: 1200x628, story 1080x1920. |
-| 4 | **Target + angle bias** | The persona or moment the set is aimed at. Shapes which layers to lead with. |
+| 3 | **Reference ads** | 2 to 4 of the brand's actual ads (or a close competitor's). You replicate their ad system, not a generic card. This is what makes the output look real. |
+| 4 | **Format** | The ad spec. Default: LinkedIn single-image (square 1080x1080). Others: 1200x628, story 1080x1920. |
+| 5 | **Target + angle bias** | The persona or moment the set is aimed at. Shapes which layers to lead with. |
 
 **Push back on weak inputs.** If the "messaging" is one tagline, stop and route to `messaging-hierarchy`. If the brand style is "make it look clean," ask for the actual hex codes and the logo. Generic inputs produce generic ads.
 
@@ -68,7 +69,8 @@ Render the confirmed concepts as a **self-contained HTML gallery**: each ad a co
 Then **iterate**: ask which one or two land, and produce 2-3 variations of the winner (a sharper headline, a different proof, a new visual treatment) so the user leaves with a winner and its challengers, ready to A/B.
 
 **Build notes:**
-- Square cards by default (`aspect-ratio:1/1`); honor the chosen format.
+- **Replicate the brand's real ad system from the reference ads** (post chrome, layout, type weight, background motif, logo lockup). The output should look like one of their ads dropped into the feed, not a generic card on a stock gradient. Study the references before you build.
+- Square cards by default (`aspect-ratio:1/1`); honor the chosen format. For social, render the full post chrome (logo, handle, intro copy, the creative, the CTA bar) so it reads as a live promoted post.
 - Use the brand's actual hex + logo. If only a wordmark is available, set it cleanly in the brand weight.
 - Label the gallery "illustrative concepts" if the brand is not the user's own.
 - No em-dashes in ad copy. Keep headlines mobile-legible.
