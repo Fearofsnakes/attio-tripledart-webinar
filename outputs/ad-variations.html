@@ -1,159 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Attio · LinkedIn ad variations (generated from the messaging hierarchy)</title>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
   /* ===========================================================
-     ATTIO · LINKEDIN AD VARIATIONS
-     Built on the gab-social-post design-skill pattern (React
-     frame + variant/format switcher + html2canvas PNG export),
-     re-skinned to Attio's real ad style. Copy from messaging.md.
-     Illustrative concepts for the webinar demo.
+     ATTIO · LINKEDIN AD VARIATIONS  (static, no JS, always renders)
+     Messaging-hierarchy output -> runnable LinkedIn ad concepts in
+     Attio's real style: post chrome, logo on top, one clean
+     headline, blue CTA bar. Illustrative concepts for the demo.
      =========================================================== */
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#111;font-family:'Inter',sans-serif;min-height:100vh;}
-  .app{display:flex;flex-direction:column;align-items:center;padding:34px 20px 70px;gap:16px;}
-  .intro{max-width:680px;text-align:center;}
-  .intro .ey{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FF6A3D;margin-bottom:10px;}
-  .intro h1{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:8px;}
-  .intro p{font-size:13px;line-height:1.5;color:#9aa0a8;}
-  .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:780px;}
-  .controls button{background:#1a1a1a;border:1.5px solid #333;color:#cfd3d8;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.03em;transition:all .15s;}
-  .controls button:hover{background:#222;border-color:#555;}
-  .controls button.active{border-color:#FF6A3D;background:rgba(255,106,61,.12);color:#fff;}
-  .controls .download-btn{background:rgba(255,106,61,.15);border-color:#FF6A3D;color:#FF6A3D;}
-  .meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6a6f78;letter-spacing:.05em;}
-  .meta b{color:#cfd3d8;}.meta .lad{color:#FF6A3D;}
-  .canvas-wrapper{overflow:hidden;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.55);}
+  body{background:#EAE9E4;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#16181D;padding:48px 24px 80px;-webkit-font-smoothing:antialiased;}
+  .head{max-width:1160px;margin:0 auto 40px;}
+  .head .ey{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF4A00;margin-bottom:12px;}
+  .head h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;max-width:780px;}
+  .head p{font-size:15px;color:#4a4f57;line-height:1.55;max-width:720px;}
+  .head .chain{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#4a4f57;background:#fff;border:1px solid #E7E9EC;border-radius:999px;padding:8px 16px;}
+  .head .chain b{color:#16181D;}
 
-  /* ===== THE AD FRAME (Attio creative) ===== */
-  .frame{position:relative;overflow:hidden;background:#FBFBFA;}
-  .dotgrid{position:absolute;inset:0;background-image:radial-gradient(circle, rgba(22,24,29,.10) 1px, transparent 1.5px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 78% 72% at 50% 46%, #000 52%, transparent 100%);mask-image:radial-gradient(ellipse 78% 72% at 50% 46%, #000 52%, transparent 100%);}
-  .frame.dark{background:#121317;}
-  .frame.dark .dotgrid{background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1.5px);}
-  .layer{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;}
-  .wm{display:inline-flex;align-items:center;gap:9px;}
-  .wm .sq{background:#111317;border-radius:9px;display:flex;align-items:center;justify-content:center;}
-  .wm .sq img{filter:brightness(0) invert(1);display:block;}
-  .wm .t{font-weight:800;letter-spacing:-.04em;color:#16181D;}
-  .frame.dark .wm .t{color:#fff;}
-  .hl{font-weight:800;letter-spacing:-.03em;line-height:1.08;color:#16181D;}
-  .hl .g{color:#A2A7AE;}
-  .frame.dark .hl{color:#fff;}
-  .frame.dark .hl .g{color:#71767E;}
-  .subt{font-weight:500;color:#6b7280;line-height:1.45;}
-  .cta{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#fff;background:#16181D;border-radius:10px;}
-  .frame.dark .cta{background:#fff;color:#16181D;}
+  .grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;align-items:start;}
+  @media(max-width:1020px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
+  .unit{display:flex;flex-direction:column;gap:10px;}
+
+  /* LinkedIn promoted-post chrome */
+  .li{background:#fff;border:1px solid #E2E4E8;border-radius:10px;overflow:hidden;box-shadow:0 6px 26px rgba(0,0,0,.09);}
+  .li-top{display:flex;align-items:center;gap:10px;padding:13px 14px 11px;}
+  .li-logo{width:40px;height:40px;border-radius:9px;background:#111317;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
+  .li-logo img{width:22px;height:auto;filter:brightness(0) invert(1);}
+  .li-name{font-size:14px;font-weight:700;color:#1f2328;line-height:1.25;}
+  .li-name span{display:block;font-size:12px;font-weight:400;color:#6b7280;}
+  .li-copy{padding:0 14px 12px;font-size:13.5px;line-height:1.5;color:#3a3f47;}
+  .li-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#EAF0F7;padding:13px 14px;border-top:1px solid #E2E4E8;}
+  .li-cta .tag{font-size:13px;font-weight:700;color:#1f2328;line-height:1.3;}
+  .li-cta .btn{flex:0 0 auto;font-size:13px;font-weight:600;color:#2C6BE0;background:#fff;border:1.5px solid #2C6BE0;border-radius:999px;padding:8px 18px;}
+
+  /* the creative: clean, logo on top, one headline */
+  .cr{aspect-ratio:4/5;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:34px 28px;background:#FBFBFA;text-align:center;}
+  .cr::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(22,24,29,.09) 1px, transparent 1.5px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 80% 74% at 50% 46%, #000 54%, transparent 100%);mask-image:radial-gradient(ellipse 80% 74% at 50% 46%, #000 54%, transparent 100%);pointer-events:none;}
+  .cr > *{position:relative;z-index:1;}
+  .wm{display:inline-flex;align-items:center;gap:8px;}
+  .wm img{height:22px;width:auto;display:block;}
+  .wm .w{font-size:22px;font-weight:800;letter-spacing:-.04em;color:#16181D;}
+  .cr h2{font-size:27px;font-weight:800;line-height:1.1;letter-spacing:-.025em;color:#16181D;max-width:14ch;}
+  .cr h2 .g{color:#A2A7AE;}
+  .cr .subt{font-size:13px;font-weight:500;color:#6b7280;line-height:1.45;max-width:26ch;margin-top:12px;}
+  .stack-mid{display:flex;flex-direction:column;align-items:center;}
+
+  .cr.dark{background:#121317;}
+  .cr.dark::before{background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1.5px);}
+  .cr.dark .wm .w{color:#fff;}
+  .cr.dark .wm img{filter:brightness(0) invert(1);}
+  .cr.dark h2{color:#fff;}
+  .cr.dark h2 .g{color:#71767E;}
+  .cr.dark .subt{color:#9aa0a8;}
+
+  .meta{font-size:12.5px;color:#4a4f57;line-height:1.4;padding:0 4px;}
+  .meta .ang{font-weight:700;color:#16181D;}
+  .meta .lad{color:#FF4A00;font-weight:600;}
+  .note{max-width:1160px;margin:46px auto 0;font-size:12.5px;color:#6a6f78;border-top:1px solid #E7E9EC;padding-top:18px;line-height:1.6;}
 </style>
 </head>
 <body>
-<div id="root"></div>
 
-<script type="text/babel">
-const FORMATS = {
-  portrait: { w: 1080, h: 1350, label: 'LinkedIn 1080x1350', scale: 0.40 },
-  square:   { w: 1080, h: 1080, label: 'Square 1080x1080',   scale: 0.46 },
-};
+  <div class="head">
+    <div class="ey">The finale · what the skills produce</div>
+    <h1>Attio, turned into runnable LinkedIn ads.</h1>
+    <p>Six promoted-post concepts in Attio's clean style, generated from the messaging stack. Each headline ladders to a messaging layer, so the set is a structured message test. Change the copy, re-run, get a fresh set.</p>
+    <div class="chain">Context <b>&rarr;</b> ICP <b>&rarr;</b> positioning <b>&rarr;</b> messaging <b>&rarr;</b> <b>these ads</b></div>
+  </div>
 
-// copy from outputs/messaging.md; each ad ladders to a layer
-const ADS = [
-  { lead:'Most CRMs bolted AI on.', rest:'Attio was built for it.', sub:'AI in the data model from day one, not retrofitted onto legacy architecture.', cta:'Learn more', dark:false, angle:'POV wedge', ladder:'POV' },
-  { lead:'Your data model.', rest:'Your rules.', sub:'Custom objects and your schema. A CRM that bends to how you actually sell.', cta:'Start free', dark:false, angle:'Flexibility as control', ladder:'Benefit 1' },
-  { lead:'80,000+ startups', rest:'already switched.', sub:'Granola, Modal, Railway, Listen Labs, and 80,000 more build on Attio.', cta:'Join them', dark:false, angle:'Social proof', ladder:'Proof point' },
-  { lead:'Still running a CRM', rest:'from 2009?', sub:'Your go-to-market changed. Your CRM did not. That gap costs you pipeline.', cta:'Switch in an afternoon', dark:true, angle:'Name the pain', ladder:'Problem' },
-  { lead:'Live in an afternoon.', rest:'Scales to IPO.', sub:'Import, model, ship. The AI CRM that grows with you from seed to IPO.', cta:'Try it free', dark:false, angle:'Speed and scale', ladder:'Benefit 3' },
-  { lead:'The CRM your', rest:'AI agents can actually use.', sub:'Structured context agents can act on: research, enrich, run your workflows.', cta:'See it work', dark:false, angle:'Agent-ready (white space)', ladder:'Benefit 2 + POV' },
-];
+  <div class="grid">
 
-function Ad({ ad, fmt }){
-  const { w, h } = FORMATS[fmt];
-  const pad   = Math.round(w * 0.085);
-  const logoSq= Math.round(w * 0.054);
-  const logoT = Math.round(w * 0.045);
-  const hFont = Math.round(w * (fmt==='portrait' ? 0.094 : 0.086));
-  const subF  = Math.round(w * 0.0275);
-  const ctaF  = Math.round(w * 0.026);
-  const gap   = Math.round(w * 0.03);
-  return (
-    <div className={'frame' + (ad.dark?' dark':'')} style={{width:w,height:h}}>
-      <div className="dotgrid"/>
-      <div className="layer" style={{padding:pad}}>
-        <div className="wm">
-          <span className="sq" style={{width:logoSq,height:logoSq}}>
-            <img src="../assets/attio-logo.svg" alt="" style={{width:Math.round(logoSq*0.56)}}/>
-          </span>
-          <span className="t" style={{fontSize:logoT}}>attio</span>
+    <!-- 1 · POV wedge -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">The AI-native CRM, built for AI from day one, not retrofitted onto legacy architecture.</div>
+        <div class="cr">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2><span class="g">Most CRMs bolted AI on.</span> Attio was built for it.</h2></div>
+          <div class="subt">AI in the data model from day one.</div>
         </div>
-        <div style={{display:'flex',flexDirection:'column',gap:gap,alignItems:'center'}}>
-          <div className="hl" style={{fontSize:hFont,maxWidth:'15ch'}}>
-            <span className="g">{ad.lead}</span> {ad.rest}
-          </div>
-          <div className="subt" style={{fontSize:subF,maxWidth:'24ch'}}>{ad.sub}</div>
-        </div>
-        <div className="cta" style={{fontSize:ctaF,padding:`${Math.round(ctaF*0.7)}px ${Math.round(ctaF*1.4)}px`}}>
-          {ad.cta} &rarr;
-        </div>
+        <div class="li-cta"><span class="tag">The AI CRM built AI-native</span><span class="btn">Learn more</span></div>
       </div>
+      <div class="meta"><span class="ang">Angle: the POV wedge.</span> <span class="lad">Ladders to: POV.</span></div>
     </div>
-  );
-}
 
-function App(){
-  const [v,setV] = React.useState(0);
-  const [fmt,setFmt] = React.useState('portrait');
-  const [dl,setDl] = React.useState(false);
-  const ad = ADS[v];
-  const { scale } = FORMATS[fmt];
-
-  async function download(){
-    setDl(true);
-    if(document.fonts && document.fonts.ready) await document.fonts.ready;
-    await new Promise(r=>setTimeout(r,80));
-    const el=document.getElementById('post-frame');
-    const c=await html2canvas(el,{scale:2,useCORS:true,backgroundColor:null,width:FORMATS[fmt].w,height:FORMATS[fmt].h});
-    const a=document.createElement('a');a.download='attio-ad-'+(v+1)+'-'+fmt+'.png';a.href=c.toDataURL('image/png');a.click();
-    setDl(false);
-  }
-
-  return (
-    <div className="app">
-      <div className="intro">
-        <div className="ey">The finale · what the skills produce</div>
-        <h1>Attio, turned into runnable LinkedIn ads</h1>
-        <p>Six concepts from the messaging stack, in Attio's real ad style. Switch the angle, switch the format, export the PNG, and run it. Change the copy upstream and re-run for a fresh set.</p>
+    <!-- 2 · data model -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">Custom objects, your schema, your workflows. A CRM that bends to how you actually sell.</div>
+        <div class="cr">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2><span class="g">Your data model.</span> Your rules.</h2></div>
+          <div class="subt">The most flexible data model in CRM.</div>
+        </div>
+        <div class="li-cta"><span class="tag">A CRM that bends to you</span><span class="btn">Start free</span></div>
       </div>
-
-      <div className="controls">
-        {ADS.map((a,i)=>(
-          <button key={i} className={i===v?'active':''} onClick={()=>setV(i)}>{(i+1)+' · '+a.angle}</button>
-        ))}
-      </div>
-
-      <div className="controls">
-        {Object.entries(FORMATS).map(([k,val])=>(
-          <button key={k} className={k===fmt?'active':''} onClick={()=>setFmt(k)}>{val.label}</button>
-        ))}
-        <button className="download-btn" onClick={download} disabled={dl}>{dl?'Exporting…':'↓ Export PNG'}</button>
-      </div>
-
-      <div className="meta">Angle: <b>{ad.angle}</b> &nbsp;·&nbsp; Ladders to: <span className="lad">{ad.ladder}</span></div>
-
-      <div className="canvas-wrapper" style={{transform:'scale('+scale+')',transformOrigin:'top center'}}>
-        <div id="post-frame"><Ad ad={ad} fmt={fmt}/></div>
-      </div>
+      <div class="meta"><span class="ang">Angle: flexibility as control.</span> <span class="lad">Ladders to: Benefit 1.</span></div>
     </div>
-  );
-}
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
+    <!-- 3 · social proof -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">Join the world's leading startups, Granola, Modal, Railway, and 80,000 more, on Attio.</div>
+        <div class="cr">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2><span class="g">80,000+ startups</span> already switched.</h2></div>
+          <div class="subt">Granola, Modal, Railway, and more.</div>
+        </div>
+        <div class="li-cta"><span class="tag">Join 80,000+ startups</span><span class="btn">Sign Up</span></div>
+      </div>
+      <div class="meta"><span class="ang">Angle: social proof.</span> <span class="lad">Ladders to: Proof point.</span></div>
+    </div>
+
+    <!-- 4 · name the pain (dark) -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">Your go-to-market changed. Your CRM didn't. That gap is costing you pipeline.</div>
+        <div class="cr dark">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2><span class="g">Still running a CRM</span> from 2009?</h2></div>
+          <div class="subt">Switch in an afternoon.</div>
+        </div>
+        <div class="li-cta"><span class="tag">Your CRM is holding you back</span><span class="btn">Sign Up</span></div>
+      </div>
+      <div class="meta"><span class="ang">Angle: name the pain (dark, for range).</span> <span class="lad">Ladders to: Problem.</span></div>
+    </div>
+
+    <!-- 5 · speed + scale -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">Import, model, and ship. Live in an afternoon, scaling with you from seed to IPO.</div>
+        <div class="cr">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2><span class="g">Live in an afternoon.</span> Scales to IPO.</h2></div>
+          <div class="subt">The AI CRM that grows with you.</div>
+        </div>
+        <div class="li-cta"><span class="tag">Seed to IPO on one CRM</span><span class="btn">Try it free</span></div>
+      </div>
+      <div class="meta"><span class="ang">Angle: speed and scale.</span> <span class="lad">Ladders to: Benefit 3.</span></div>
+    </div>
+
+    <!-- 6 · agent-ready white space -->
+    <div class="unit">
+      <div class="li">
+        <div class="li-top"><span class="li-logo"><img src="../assets/attio-logo.svg" alt="" /></span><span class="li-name">Attio<span>Promoted</span></span></div>
+        <div class="li-copy">Structured context your AI agents can act on: research, enrich, and run workflows for you.</div>
+        <div class="cr">
+          <div class="wm"><img src="../assets/attio-logo.svg" alt="" /><span class="w">attio</span></div>
+          <div class="stack-mid"><h2>The CRM your <span class="g">AI agents</span> can actually use.</h2></div>
+          <div class="subt">AI that does the work, not just data entry.</div>
+        </div>
+        <div class="li-cta"><span class="tag">Built for your AI agents</span><span class="btn">See it work</span></div>
+      </div>
+      <div class="meta"><span class="ang">Angle: agent-ready (the white space).</span> <span class="lad">Ladders to: Benefit 2 + POV.</span></div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    Illustrative concepts generated from <code>outputs/messaging.md</code> for the webinar demo, in Attio's real LinkedIn ad style (post chrome, logo on top, one clean headline, the blue CTA bar). Every headline traces to a layer of the stack, so the ads are on-message by construction. Swap the brand, logo, and stack, and ad-studio produces a fresh set for any company.
+  </div>
+
 </body>
 </html>
