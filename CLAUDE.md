@@ -17,6 +17,14 @@ A pre-built context repo for one company (Attio), so an AI agent can run the thr
 4. **Compare.** Read the outputs against the real ads in `examples/`. Where do today's ads drift from the foundations?
 5. **Ship the ads (the finale).** Run `ad-studio` on the messaging output to produce on-brand LinkedIn ad variations at `outputs/ad-variations.html`. Six concepts, each laddering to a messaging layer, ready to run or tweak. This is the wow moment for a performance audience.
 
+## The live loop (ads follow the messaging)
+
+The ad copy in `outputs/ad-variations.html` is generated from `outputs/messaging.md`. They are not auto-bound (that would need JS, which is brittle in a static file). The binding is the skill:
+
+> **Change the message, re-run `ad-studio`, the ads regenerate.** Edit `outputs/messaging.md` (or re-run `messaging-hierarchy` live) -> run `ad-studio` -> `ad-variations.html` is rewritten from the new copy -> `git add -A && git commit && git push`.
+
+That one step is the best live moment for a performance audience: change the positioning, watch six fresh ads fall out of it. Always `push` after, so the public repo and the deck's "See the ads" link stay current.
+
 ## What's in here
 
 | Path | Holds |
