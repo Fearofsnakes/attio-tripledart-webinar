@@ -10,68 +10,47 @@
 <style>
   /* ===========================================================
      ATTIO · LINKEDIN AD VARIATIONS
-     The finale of the live build: messaging-hierarchy output ->
-     runnable, on-brand LinkedIn ad concepts + iterations.
-     Brand: Attio orange #FF4A00, near-black, white. Builder tone.
+     The finale: messaging-hierarchy output -> runnable ads.
+     Styled to match Attio's real LinkedIn creative: light bg,
+     dot grid, big near-black headline with a grey lead phrase,
+     black logo square + "attio" wordmark, small grey CTA.
      Illustrative concepts for the webinar demo.
      =========================================================== */
   :root{
-    --orange:#FF4A00;--ink:#16181D;--ink-2:#23262D;--paper:#FFFFFF;
-    --paper-soft:#F4F2EE;--muted:#8A8F98;--line:#E6E3DC;
-    --font:'Inter',-apple-system,sans-serif;
+    --ink:#17191E;--grey:#A6ABB2;--paper:#FCFBF9;--line:#ECEAE4;
+    --muted:#9AA0A8;--orange:#FF4A00;--font:'Inter',-apple-system,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#ECEAE4;font-family:var(--font);color:var(--ink);padding:48px 24px 80px;}
+  body{background:#EEEDE8;font-family:var(--font);color:var(--ink);padding:48px 24px 80px;}
   .head{max-width:1120px;margin:0 auto 40px;}
   .head .ey{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
   .head h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;max-width:760px;}
-  .head p{font-size:15px;color:#4a4f57;line-height:1.55;max-width:680px;}
+  .head p{font-size:15px;color:#4a4f57;line-height:1.55;max-width:700px;}
   .head .chain{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#4a4f57;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;}
   .head .chain b{color:var(--ink);}
 
   .grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
   @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:640px){.grid{grid-template-columns:1fr;}}
-
   .unit{display:flex;flex-direction:column;gap:10px;}
-  /* the ad itself: square LinkedIn creative */
-  .ad{aspect-ratio:1/1;border-radius:16px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:30px;box-shadow:0 6px 30px rgba(0,0,0,.10);}
-  .ad .logo{font-size:19px;font-weight:800;letter-spacing:-.02em;}
-  .ad .body{display:flex;flex-direction:column;gap:14px;}
-  .ad h2{font-size:30px;font-weight:800;line-height:1.08;letter-spacing:-.02em;}
-  .ad .sub{font-size:14.5px;line-height:1.45;font-weight:500;}
-  .ad .cta{align-self:flex-start;font-size:13px;font-weight:700;border-radius:8px;padding:11px 18px;}
-  .ad .kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
 
-  /* themes */
-  .ad.dark{background:var(--ink);color:#fff;}
-  .ad.dark .logo{color:#fff;}
-  .ad.dark .kicker{color:var(--orange);}
-  .ad.dark h2 em{color:var(--orange);font-style:normal;}
-  .ad.dark .sub{color:rgba(255,255,255,.7);}
-  .ad.dark .cta{background:var(--orange);color:#fff;}
-
-  .ad.light{background:var(--paper);color:var(--ink);}
-  .ad.light .logo{color:var(--ink);}
-  .ad.light .kicker{color:var(--orange);}
-  .ad.light h2 em{color:var(--orange);font-style:normal;}
-  .ad.light .sub{color:#4a4f57;}
-  .ad.light .cta{background:var(--ink);color:#fff;}
-
-  .ad.orange{background:var(--orange);color:#fff;}
-  .ad.orange .logo{color:#fff;}
-  .ad.orange .kicker{color:rgba(255,255,255,.85);}
-  .ad.orange h2 em{color:var(--ink);font-style:normal;}
-  .ad.orange .sub{color:rgba(255,255,255,.85);}
-  .ad.orange .cta{background:#fff;color:var(--ink);}
-
-  /* big quiet number motif for proof ad */
-  .ad .bignum{font-size:96px;font-weight:900;letter-spacing:-.04em;line-height:.9;}
+  /* the ad: square LinkedIn creative, Attio style */
+  .ad{aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:14px;position:relative;overflow:hidden;padding:32px;display:flex;flex-direction:column;box-shadow:0 6px 26px rgba(0,0,0,.07);}
+  .ad::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(23,25,30,.10) 1px, transparent 1.4px);background-size:18px 18px;mask-image:linear-gradient(180deg,transparent 0,black 30%,black 80%,transparent 100%);pointer-events:none;}
+  .ad > *{position:relative;z-index:1;}
+  .bracket{width:34px;height:34px;border-left:7px solid var(--ink);border-bottom:7px solid var(--ink);}
+  .ad h2{font-size:33px;font-weight:800;line-height:1.06;letter-spacing:-.022em;color:var(--ink);margin:auto 0;}
+  .ad h2 .g{color:var(--grey);}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;}
+  .cta{font-size:14px;font-weight:600;color:var(--muted);}
+  .brand{display:flex;align-items:center;gap:7px;}
+  .brand .sq{width:26px;height:26px;border-radius:7px;background:var(--ink);display:flex;align-items:center;justify-content:center;}
+  .brand .sq img{width:15px;height:auto;filter:brightness(0) invert(1);}
+  .brand .wm{font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.02em;}
 
   .meta{font-size:12.5px;color:#4a4f57;line-height:1.4;padding:0 4px;}
   .meta .ang{font-weight:700;color:var(--ink);}
   .meta .lad{color:var(--orange);font-weight:600;}
-
   .note{max-width:1120px;margin:44px auto 0;font-size:12.5px;color:#6a6f78;border-top:1px solid var(--line);padding-top:18px;line-height:1.6;}
 </style>
 </head>
@@ -80,7 +59,7 @@
   <div class="head">
     <div class="ey">The finale · what the skills produce</div>
     <h1>Attio, turned into runnable LinkedIn ads.</h1>
-    <p>Same messaging stack, six angles, each one a LinkedIn single-image concept a performance marketer could ship or tweak today. This is the output the foundations make possible: not a doc, an ad.</p>
+    <p>Same messaging stack, six angles, each a LinkedIn single-image concept in Attio's own ad style. Change the copy, re-run, and the ad-studio skill spins fresh variations in seconds. This is the output the foundations make possible: not a doc, an ad.</p>
     <div class="chain">Context <b>&rarr;</b> ICP <b>&rarr;</b> positioning <b>&rarr;</b> messaging <b>&rarr;</b> <b>these ads</b></div>
   </div>
 
@@ -88,91 +67,86 @@
 
     <!-- 1 · POV wedge -->
     <div class="unit">
-      <div class="ad dark">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="kicker">AI-native CRM</div>
-          <h2>Most CRMs bolted AI on. <em>Attio was built for it.</em></h2>
-          <div class="sub">AI in the data model from day one, not a feature retrofitted onto 2009 architecture.</div>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">Most CRMs bolted AI on.</span> Attio was built for it.</h2>
+        <div class="foot">
+          <div class="cta">See the difference &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">See the difference &rarr;</div>
       </div>
       <div class="meta"><span class="ang">Angle: the POV wedge.</span> <span class="lad">Ladders to: POV.</span></div>
     </div>
 
-    <!-- 2 · builder / data model -->
+    <!-- 2 · data model / builder -->
     <div class="unit">
-      <div class="ad light">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="kicker">For builders</div>
-          <h2>A CRM that bends to <em>your</em> data model.</h2>
-          <div class="sub">Custom objects, your schema, your workflows. Not the other way around.</div>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">Your data model,</span> your rules.</h2>
+        <div class="foot">
+          <div class="cta">Start free &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">Start building free &rarr;</div>
       </div>
-      <div class="meta"><span class="ang">Angle: flexibility benefit.</span> <span class="lad">Ladders to: Benefit 1.</span></div>
+      <div class="meta"><span class="ang">Angle: flexibility as control.</span> <span class="lad">Ladders to: Benefit 1.</span></div>
     </div>
 
     <!-- 3 · social proof -->
     <div class="unit">
-      <div class="ad orange">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="bignum">80k+</div>
-          <h2>startups already run on Attio.</h2>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">80,000+ startups</span> already switched.</h2>
+        <div class="foot">
+          <div class="cta">Join them &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">Join them &rarr;</div>
       </div>
       <div class="meta"><span class="ang">Angle: social proof.</span> <span class="lad">Ladders to: Proof point.</span></div>
     </div>
 
-    <!-- 4 · pain / status quo -->
+    <!-- 4 · name the pain -->
     <div class="unit">
-      <div class="ad light">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="kicker">Be honest</div>
-          <h2>Still forcing your GTM into a CRM from <em>2009?</em></h2>
-          <div class="sub">Your motion changed. Your CRM didn't. That gap is costing you pipeline.</div>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">Still running a CRM</span> from 2009?</h2>
+        <div class="foot">
+          <div class="cta">Switch in an afternoon &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">Switch in an afternoon &rarr;</div>
       </div>
       <div class="meta"><span class="ang">Angle: name the pain.</span> <span class="lad">Ladders to: Problem.</span></div>
     </div>
 
-    <!-- 5 · speed -->
+    <!-- 5 · speed + scale -->
     <div class="unit">
-      <div class="ad dark">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="kicker">Time to value</div>
-          <h2>Live in an <em>afternoon.</em> Not a six-month rollout.</h2>
-          <div class="sub">Import, model, and ship. The CRM keeps up with how fast you move.</div>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">Live in an afternoon.</span> Scales to IPO.</h2>
+        <div class="foot">
+          <div class="cta">Try it free &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">Try it free &rarr;</div>
       </div>
-      <div class="meta"><span class="ang">Angle: speed / time-to-value.</span> <span class="lad">Ladders to: Benefit 2.</span></div>
+      <div class="meta"><span class="ang">Angle: speed and scale.</span> <span class="lad">Ladders to: Benefit 3.</span></div>
     </div>
 
-    <!-- 6 · agent-ready outcome -->
+    <!-- 6 · agent-ready white space -->
     <div class="unit">
-      <div class="ad light">
-        <div class="logo">attio</div>
-        <div class="body">
-          <div class="kicker">AI that does the work</div>
-          <h2>The CRM your <em>AI agents</em> can actually use.</h2>
-          <div class="sub">Structured context AI can act on: research, enrich, and run workflows for you.</div>
+      <div class="ad">
+        <div class="bracket"></div>
+        <h2><span class="g">The CRM your</span> AI agents can actually use.</h2>
+        <div class="foot">
+          <div class="cta">See it work &rarr;</div>
+          <div class="brand"><span class="sq"><img src="../assets/attio-logo.svg" alt="" /></span><span class="wm">attio</span></div>
         </div>
-        <div class="cta">See it work &rarr;</div>
       </div>
-      <div class="meta"><span class="ang">Angle: agent-ready outcome.</span> <span class="lad">Ladders to: Feature + POV.</span></div>
+      <div class="meta"><span class="ang">Angle: agent-ready (the white space).</span> <span class="lad">Ladders to: Benefit 2 + POV.</span></div>
     </div>
 
   </div>
 
   <div class="note">
-    Illustrative ad concepts generated from Attio's messaging hierarchy for the webinar demo. Every headline traces to a layer of the stack (POV, benefits, proof, problem), so the ads are on-message by construction rather than invented per campaign. Swap the brand color, logo, and stack, and the same skill produces a fresh set for any company.
+    Illustrative concepts generated from <code>outputs/messaging.md</code> for the webinar demo, styled to Attio's real LinkedIn creative. Every headline traces to a layer of the stack (POV, benefits, proof, problem), so the ads are on-message by construction. Swap the brand, logo, and stack, and the ad-studio skill produces a fresh set for any company.
   </div>
 
 </body>

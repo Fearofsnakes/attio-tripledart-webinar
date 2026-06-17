@@ -15,7 +15,7 @@ A pre-built context repo for one company (Attio), so an AI agent can run the thr
    - `positioning-audit` -> writes to `outputs/positioning.md`
    - `messaging-hierarchy` -> writes to `outputs/messaging.md`
 4. **Compare.** Read the outputs against the real ads in `examples/`. Where do today's ads drift from the foundations?
-5. **Ship the deck.** Run the `playground` skill on the outputs to produce a shareable visual.
+5. **Ship the ads (the finale).** Run `ad-studio` on the messaging output to produce on-brand LinkedIn ad variations at `outputs/ad-variations.html`. Six concepts, each laddering to a messaging layer, ready to run or tweak. This is the wow moment for a performance audience.
 
 ## What's in here
 
