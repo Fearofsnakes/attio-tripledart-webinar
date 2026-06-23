@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Attio · What they run today vs what the foundations regenerate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  /* ===========================================================
+     ATTIO · BEFORE vs AFTER
+     LEFT  = Attio's REAL ads (captured screenshots) — what they run today.
+     RIGHT = ads REGENERATED from the PMM foundations (ICP + positioning + messaging).
+     The gap is the teaching point: real ads lean on "AI-native" + discounts +
+     a vague audience; the regenerated set leads with the wedge they can own.
+     Static, no JS. TripleDart webinar, June 2026. Illustrative concepts.
+     =========================================================== */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#EAE9E4;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#16181D;padding:48px 24px 90px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  .ey{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6b7079;margin-bottom:12px;}
+  h1{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.08;margin-bottom:14px;max-width:900px;}
+  .lede{font-size:15.5px;color:#4a4f57;line-height:1.6;max-width:800px;}
+
+  .shift{margin:30px 0 8px;display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;}
+  @media(max-width:760px){.shift{grid-template-columns:1fr;}}
+  .scard{background:#fff;border:1px solid #E2E2DD;border-radius:12px;padding:18px 20px;}
+  .scard.old{border-left:4px solid #b9352b;}
+  .scard.new{border-left:4px solid #1f9d57;}
+  .scard .lab{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+  .scard.old .lab{color:#b9352b;}
+  .scard.new .lab{color:#1f9d57;}
+  .scard .row{font-size:13px;line-height:1.5;margin-bottom:7px;color:#3a3f47;}
+  .scard .row b{color:#16181D;}
+  .arrow{display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#16181D;}
+
+  .seclab{margin:46px 0 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .seclab .pill{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;border-radius:7px;padding:5px 11px;}
+  .seclab.old .pill{background:#b9352b;}
+  .seclab.new .pill{background:#1f9d57;}
+  .seclab .t{font-size:15px;font-weight:600;color:#3a3f47;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start;}
+  @media(max-width:1040px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:700px){.grid{grid-template-columns:1fr;}}
+  .unit{display:flex;flex-direction:column;gap:9px;}
+
+  /* real-ad screenshot card */
+  .shot{background:#fff;border:1px solid #E2E2DD;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .shot img{display:block;width:100%;height:auto;}
+
+  /* generated promoted-post card (matches ad-variations.html) */
+  .post{background:#fff;border:1px solid #E2E2DD;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .pt{display:flex;align-items:center;gap:9px;padding:13px 14px 10px;}
+  .ic{width:40px;height:40px;border-radius:9px;background:#16181D;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .ic img{width:21px;height:auto;filter:brightness(0) invert(1);}
+  .pn{font-size:13.5px;font-weight:700;color:#16181D;line-height:1.2;}
+  .pp{font-size:11.5px;color:#8a8f97;line-height:1.3;}
+  .intro{font-size:13px;color:#1c1e23;line-height:1.5;padding:0 14px 12px;}
+  .cr{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 24px;background:#0b0d10;color:#fff;}
+  .cr.light{background:#F2F1EC;color:#16181D;}
+  .cr .kick{position:relative;z-index:2;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.72;margin-bottom:auto;}
+  .cr.light .kick{color:#FF4A00;opacity:1;}
+  .cr h2{position:relative;z-index:2;font-size:29px;font-weight:800;letter-spacing:-.02em;line-height:1.06;}
+  .cr .sub{position:relative;z-index:2;font-size:13.5px;line-height:1.45;margin-top:11px;opacity:.82;max-width:92%;}
+  .cr .brandurl{position:relative;z-index:2;font-size:11px;font-weight:600;letter-spacing:.04em;color:#6CA8FF;margin-top:16px;}
+  .cr.light .brandurl{color:#2563EB;}
+  .topo{position:absolute;inset:0;z-index:1;opacity:.20;background:
+     radial-gradient(120% 90% at 80% 12%,transparent 0 38%,rgba(255,255,255,.5) 38.4% 38.9%,transparent 39.3% 47%,rgba(255,255,255,.4) 47.4% 47.9%,transparent 48.3% 57%,rgba(255,255,255,.32) 57.4% 57.9%,transparent 58.3% 69%,rgba(255,255,255,.24) 69.4% 69.9%,transparent 70.3%);}
+  .cr.light .topo{opacity:.55;background:
+     radial-gradient(120% 90% at 80% 12%,transparent 0 38%,rgba(0,0,0,.16) 38.4% 38.9%,transparent 39.3% 47%,rgba(0,0,0,.12) 47.4% 47.9%,transparent 48.3% 57%,rgba(0,0,0,.09) 57.4% 57.9%,transparent 58.3% 69%,rgba(0,0,0,.07) 69.4% 69.9%,transparent 70.3%);}
+  .ascii{position:absolute;inset:0;z-index:1;opacity:.13;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.3;color:#fff;overflow:hidden;padding:10px 8px;white-space:pre-wrap;word-break:break-all;letter-spacing:1px;}
+  .cta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#F4F3EF;border-top:1px solid #E2E2DD;}
+  .cta .ct{font-size:12px;color:#3a3f47;line-height:1.35;font-weight:500;}
+  .cta .btn{flex:0 0 auto;font-size:12.5px;font-weight:700;color:#16181D;border:1.4px solid #16181D;border-radius:999px;padding:7px 15px;}
+  .cap{font-size:12px;color:#5a5f67;line-height:1.4;padding:2px 2px 0;}
+  .cap b{color:#16181D;font-weight:700;}
+  .cap .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;border-radius:5px;padding:2px 7px;margin-right:7px;vertical-align:1px;}
+  .cap .tag.old{background:#b9352b;}
+  .cap .tag.new{background:#1f9d57;}
+  .cap .tag.dark{background:#16181D;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="ey">Press X to Market × TripleDart · the payoff</div>
+  <h1>What Attio runs today &mdash; vs what the foundations regenerate.</h1>
+  <p class="lede">On the left, Attio's real paid creative, captured from the feed. On the right, ads regenerated from the ICP, positioning, and messaging we just built. Same brand, same product. The difference is what the message is built on.</p>
+
+  <div class="shift">
+    <div class="scard old">
+      <div class="lab">Their real ads lean on</div>
+      <div class="row"><b>"AI-native CRM"</b> &mdash; 4 of 5 ads. The most crowded claim in the category.</div>
+      <div class="row"><b>Discounts</b> &mdash; "80% off Attio Pro" leads two of them. Price, not position.</div>
+      <div class="row"><b>A vague audience</b> &mdash; "builders," "next-gen companies." Wide, not a wedge.</div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="scard new">
+      <div class="lab">The regenerated set leads with</div>
+      <div class="row"><b>The wedge they own</b> &mdash; flexible like a doc, real like a CRM. Bends to how you sell.</div>
+      <div class="row"><b>A sharp audience</b> &mdash; builder-led startups at the spreadsheet-breaks moment.</div>
+      <div class="row"><b>AI-native as proof</b> &mdash; the AI works because the data model is yours. Not the headline.</div>
+    </div>
+  </div>
+
+  <!-- BEFORE: real ads -->
+  <div class="seclab old"><span class="pill">Before</span><span class="t">Attio's real ads &mdash; captured from the feed</span></div>
+  <div class="grid">
+    <div class="unit"><div class="shot"><img src="../examples/attio-ad-4-crm-builder.png" alt="Attio real ad: The CRM for builders" /></div><div class="cap"><span class="tag old">AI-native</span><b>"The CRM for builders."</b> Leads with "AI-native CRM." The crowded axis, vague audience.</div></div>
+    <div class="unit"><div class="shot"><img src="../examples/attio-ad-5-next-generation.png" alt="Attio real ad: next generation of companies" /></div><div class="cap"><span class="tag old">AI-native</span><b>"The CRM behind the next generation of companies."</b> AI-native again. Who, exactly?</div></div>
+    <div class="unit"><div class="shot"><img src="../examples/attio-ad-2-ai-crm.png" alt="Attio real ad: 80% off" /></div><div class="cap"><span class="tag old">Discount</span><b>"Lightspeed companies get 80% off."</b> Price-led. "AI CRM, seed to IPO" underneath.</div></div>
+    <div class="unit"><div class="shot"><img src="../examples/attio-ad-3-social-proof.png" alt="Attio real ad: social proof + 80% off" /></div><div class="cap"><span class="tag old">Discount + proof</span><b>"Get up to 80% off."</b> Logo wall + discount. Same AI-CRM line.</div></div>
+    <div class="unit"><div class="shot"><img src="../examples/attio-ad-1-churn-visible.png" alt="Attio real ad: GTM Atlas churn visible" /></div><div class="cap"><span class="tag dark">Content</span><b>"Churn is visible 180 days in advance."</b> A thought-leadership lead magnet. No product position.</div></div>
+    <div class="unit" style="display:flex;align-items:center;justify-content:center;"><div style="background:#fff;border:1px dashed #c9b5b2;border-radius:10px;padding:22px;font-size:13.5px;color:#3a3f47;line-height:1.55;"><b style="color:#b9352b;">The pattern:</b> strong design, but the <b>message</b> is the crowded middle &mdash; "AI-native" or a discount &mdash; aimed at a wide "builders/startups" audience. Not one ad uses the flexible-data-model wedge the positioning audit found.</div></div>
+  </div>
+
+  <!-- AFTER: regenerated ads -->
+  <div class="seclab new"><span class="pill">After</span><span class="t">Regenerated from the foundations &mdash; each ladders to a messaging layer</span></div>
+  <div class="grid">
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">Every CRM wants you to sell its way. The best startups refuse.</div><div class="cr"><div class="topo"></div><div class="kick">Your edge</div><h2>How you sell is your edge. Don't flatten it.</h2><div class="sub">A rigid CRM makes every team sell the same way.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">A CRM that bends to how you sell.</div><div class="btn">Learn more</div></div></div><div class="cap"><span class="tag new">01 POV</span><b>POV wedge.</b> The belief a legacy CRM has to argue against.</div></div>
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">Notion is flexible but not a CRM. Salesforce is a CRM but not flexible. Attio is both.</div><div class="cr light"><div class="topo"></div><div class="kick">No more trade-off</div><h2>Flexible like a doc. Real like a CRM.</h2><div class="sub">Finally, you don't have to choose.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">One data model, flexible and real.</div><div class="btn">Sign Up</div></div></div><div class="cap"><span class="tag new">02 Value prop</span><b>The squeeze (hero).</b> The both/and only Attio can claim.</div></div>
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">Rigid objects. Forced pipelines. An admin to change a single field. Sound familiar?</div><div class="cr"><div class="ascii">schema.lock=true ........ field.add=DENIED &gt;&gt;needs.admin&lt;&lt; pipeline.fixed ........ object.rigid ........ your.motion=null ENTERPRISE::TEMPLATE 0xCRM 0xCRM ........ migrate.again? ........ field.edit=ticket#4471 ........ schema.lock=true ........ forced.stage ........ 0xCRM 0xCRM</div><div class="kick">Legacy CRM</div><h2>Stop bending your team to fit the CRM.</h2><div class="sub">You shouldn't need an admin to change a field.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">There's a CRM that bends to you.</div><div class="btn">Learn more</div></div></div><div class="cap"><span class="tag new">Problem</span><b>Name the pain.</b> The rigid-CRM status quo, said out loud.</div></div>
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">Custom objects and your own schema, not a template you fight.</div><div class="cr light"><div class="topo"></div><div class="kick">Your schema</div><h2>Your CRM should match your business.</h2><div class="sub">Model it the way it actually works. Live in an afternoon.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">Custom objects, no admin required.</div><div class="btn">Sign Up</div></div></div><div class="cap"><span class="tag new">Benefit</span><b>Lead benefit (B1).</b> The tool fits you, not you fitting the tool.</div></div>
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">A clean, custom data model is what lets AI do real work on top of it.</div><div class="cr"><div class="ascii">agent.research(company) &gt;&gt; data.model=yours &gt;&gt; enrich:contact ........ workflow.run(seq) ........ account.score=92 ........ model.clean=true agent.work=real ........ research:company ........ pipeline.update() ........ enrich:contact ........ data.model=yours &gt;&gt;agents.run&lt;&lt;</div><div class="kick">Your model</div><h2>The AI works because the data is yours.</h2><div class="sub">Clean model in. Research, enrichment, workflows out.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">See agents run on your own data.</div><div class="btn">Learn more</div></div></div><div class="cap"><span class="tag new">Benefit</span><b>Mechanism (B3).</b> AI demoted to a payoff of the flexible model.</div></div>
+    <div class="unit"><div class="post"><div class="pt"><div class="ic"><img src="../assets/attio-logo.svg" alt="Attio" /></div><div><div class="pn">Attio</div><div class="pp">Promoted</div></div></div><div class="intro">"The start of the next generation of CRM." Join the teams building on Attio.</div><div class="cr"><div class="topo"></div><div class="kick">80,000+ startups</div><h2>The CRM builders actually keep.</h2><div class="sub">Lovable, Modal, Replicate, Railway, and 80,000+ more.</div><div class="brandurl">ATTIO.COM</div></div><div class="cta"><div class="ct">80,000+ startups set it up their way.</div><div class="btn">Sign Up</div></div></div><div class="cap"><span class="tag new">Proof</span><b>Social proof.</b> The numbers and builder logos do the talking.</div></div>
+  </div>
+
+</div>
+</body>
+</html>
